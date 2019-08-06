@@ -1,11 +1,12 @@
-import { JsonController, HttpCode, Post, Get, Put, Param, Body, NotFoundError } from 'routing-controllers'
+import { JsonController, HttpCode, Post, Get, Put, Param, Body, NotFoundError, Authorized } from 'routing-controllers'
 import Page from './entity'
 
 type PageList = { pages: Page[] }
 
 @JsonController()
 export default class PageController {
-
+    
+    @Authorized()
     @Post('/pages')
     @HttpCode(201)
     createPage(
@@ -27,6 +28,7 @@ export default class PageController {
         return Page.findOne(id)
     }
 
+    @Authorized()
     @Put('/pages/:id')
     async updatePage(
         @Param('id') id: number,

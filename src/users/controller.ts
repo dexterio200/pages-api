@@ -1,4 +1,4 @@
-import { JsonController, HttpCode, Post, Get, Put, Param, Body, NotFoundError } from 'routing-controllers'
+import { JsonController, Post, Get, Put, Param, Body, NotFoundError } from 'routing-controllers'
 import User from './entity'
 
 type UserList = { users: User[] }
@@ -7,28 +7,30 @@ type UserList = { users: User[] }
 export default class UserController {
 
     @Post('/users')
-    @HttpCode(201)
-    createPage(
+    async createUser(
         @Body() user: User
-    ): Promise<User> {
-        return user.save()
+    ) {
+        const { password, ...rest } = user
+        const entity = User.create(rest)
+        await entity.setPassword(password)
+        return entity.save()
     }
 
     @Get('/users')
-    async allPages(): Promise<UserList> {
+    async allUsers(): Promise<UserList> {
         const users = await User.find()
         return { users }
     }
 
     @Get('/users/:id')
-    getPage(
+    getUser(
         @Param('id') id: number
     ): Promise<User | undefined> {
         return User.findOne(id)
     }
 
     @Put('/users/:id')
-    async updatePage(
+    async updateUser(
         @Param('id') id: number,
         @Body() update: Partial<User>
     ): Promise<User> {
