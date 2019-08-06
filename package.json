@@ -1,0 +1,26 @@
+{
+  "name": "typescript2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "target/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/koa": "^2.0.49",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-multer": "^1.0.0",
+    "@types/koa-router": "^7.0.42",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^7.4.0",
+    "routing-controllers": "^0.7.7",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}
